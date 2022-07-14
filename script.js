@@ -4,7 +4,7 @@ function computerPlay(){
 }
 
 function playerPlay(){
-    let input = prompt().toLowerCase();
+    let input = prompt("Listen up!  Rock, Paper or Scissors?").toLowerCase();
     input = input.charAt(0).toUpperCase() + input.slice(1);
     return input;
 }
