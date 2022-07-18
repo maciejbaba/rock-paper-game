@@ -26,6 +26,10 @@ h1 {
   gap: 20px;
 }
 
+.copyright {
+  margin-top: auto;
+}
+
 .rock, .paper, .scissors, .game {
   animation: animateY 3s ease-in-out infinite;
 }
