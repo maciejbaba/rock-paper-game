@@ -57,11 +57,11 @@ function game (roundResults = [0, 0]) {
   playerScore += roundResults[0]
   computerScore += roundResults[1]
 
-  if (playerScore === 5) {
+  if (playerScore >= 5) {
     resultsDiv.textContent = 'You Win!'
     return
   }
-  if (computerScore === 5) {
+  if (computerScore >= 5) {
     resultsDiv.textContent = 'You Lose!'
     return
   }
