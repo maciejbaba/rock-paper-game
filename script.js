@@ -5,18 +5,18 @@ function computerPlay () {
 
 function playRound (playerSelection, computerSelection) {
   if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-    return ['You Win! Paper beats Rock', 1, 0]
+    return [1, 0]
   } else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
-    return ['You Lose! Paper beats Rock', 0, 1]
+    return [0, 1]
   } else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-    return ['You Win! Scissors beat Paper', 1, 0]
+    return [1, 0]
   } else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
-    return ['You Lose! Scissors beat Paper', 0, 1]
+    return [0, 1]
   } else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-    return ['You Win! Rock beats Scissors', 1, 0]
+    return [1, 0]
   } else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
-    return ['You Lose! Rock beats Scissors', 0, 1]
-  } else if (playerSelection === computerSelection) return ['Draw', 0, 0]
+    return [0, 1]
+  } else if (playerSelection === computerSelection) return [0, 0]
 }
 
 const rockBtn = document.querySelector('.rock-button')
@@ -34,17 +34,39 @@ scissorsBtn.addEventListener('click', function () {
   game(playRound('Scissors', computerPlay()))
 })
 
+const restartBtn = document.querySelector('.restart-button')
+restartBtn.addEventListener('click', function () {
+  playerScore = 0
+  computerScore = 0
+  resultsDiv.textContent = ''
+  resultsDiv.append(playerScoreDiv, computerScoreDiv)
+  game([0, 0])
+})
+
 const resultsDiv = document.querySelector('.results')
 
 let playerScore = 0
 let computerScore = 0
 
-function game (roundResults) {
-  if (playerScore === 5 || computerScore === 5) return
+const playerScoreDiv = document.createElement('div')
+const computerScoreDiv = document.createElement('div')
 
-  const result = roundResults[0]
-  playerScore += roundResults[1]
-  computerScore += roundResults[2]
+resultsDiv.append(playerScoreDiv, computerScoreDiv)
 
-  resultsDiv.textContent = `Result: ${result} | Player: ${playerScore} | Machine: ${computerScore}`
+function game (roundResults = [0, 0]) {
+  playerScore += roundResults[0]
+  computerScore += roundResults[1]
+
+  if (playerScore === 5) {
+    resultsDiv.textContent = 'You Win!'
+    return
+  }
+  if (computerScore === 5) {
+    resultsDiv.textContent = 'You Lose!'
+    return
+  }
+  playerScoreDiv.textContent = 'PLAYER: ' + playerScore
+  computerScoreDiv.textContent = 'MACHINE: ' + computerScore
 }
+
+game()
