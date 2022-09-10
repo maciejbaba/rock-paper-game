@@ -54,9 +54,6 @@ const computerScoreDiv = document.createElement('div')
 resultsDiv.append(playerScoreDiv, computerScoreDiv)
 
 function game (roundResults = [0, 0]) {
-  playerScore += roundResults[0]
-  computerScore += roundResults[1]
-
   if (playerScore >= 5) {
     resultsDiv.textContent = 'You Win!'
     return
@@ -65,6 +62,9 @@ function game (roundResults = [0, 0]) {
     resultsDiv.textContent = 'You Lose!'
     return
   }
+  playerScore += roundResults[0]
+  computerScore += roundResults[1]
+
   playerScoreDiv.textContent = 'PLAYER: ' + playerScore
   computerScoreDiv.textContent = 'MACHINE: ' + computerScore
 }
